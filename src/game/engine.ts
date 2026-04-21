@@ -554,3 +554,115 @@ export function formatOperation(operation: Operation): string {
 export function getAchievementDefinitions() {
   return achievementDefinitions
 }
+
+export interface SpeedMathTip {
+  id: string
+  title: string
+  example: string
+  explanation: string
+  category: 'toplama' | 'cikarma' | 'carpma' | 'bolme' | 'genel'
+}
+
+export const speedMathTips: SpeedMathTip[] = [
+  {
+    id: 'round-and-adjust',
+    title: 'Yuvarla ve düzelt',
+    example: '48 + 37 = 50 + 37 âˆ’ 2 = 85',
+    explanation:
+      'Toplamada bir sayýyý yakýn onluða yuvarla, fazlalýðý sonra çýkar. Zihinde iki adým, ama her adým çok kolay.',
+    category: 'toplama',
+  },
+  {
+    id: 'split-by-place',
+    title: 'Basamaklara ayýr',
+    example: '263 + 148 â†’ (200+100) + (60+40) + (3+8) = 411',
+    explanation:
+      'Büyük sayýlarý yüzler, onlar ve birler olarak üç parçaya ayýr. Her parçayý ayrý topla, sonra birleþtir.',
+    category: 'toplama',
+  },
+  {
+    id: 'count-up-subtraction',
+    title: 'Çýkarmada yukarý say',
+    example: '82 âˆ’ 57 â†’ 57â†’60 (+3), 60â†’82 (+22), toplam 25',
+    explanation:
+      'Çýkarma yerine küçük sayýdan büyük sayýya doðru say. Toplamda kaç ilerlediðin cevabýný verir.',
+    category: 'cikarma',
+  },
+  {
+    id: 'nines-trick',
+    title: '9 ile çarpmanýn püf noktasý',
+    example: '9 × 7 = 10×7 âˆ’ 7 = 63',
+    explanation:
+      '9 yerine önce 10 ile çarp, sonra bir kez çýkar. Her zaman iki basamak daha hýzlý sonuç.',
+    category: 'carpma',
+  },
+  {
+    id: 'five-trick',
+    title: '5 ile çarp = 10 ile çarp, ikiye böl',
+    example: '5 × 48 = (10×48) ÷ 2 = 240',
+    explanation:
+      '5 ile çarpmak zordursa önce 10 ile çarp, sonra yarýya indir. Tek adým gibi hýzlý.',
+    category: 'carpma',
+  },
+  {
+    id: 'double-halve',
+    title: 'Ýkiye katla, ikiye böl',
+    example: '16 × 25 = 8 × 50 = 4 × 100 = 400',
+    explanation:
+      'Bir sayýyý ikiye katlayýp diðerini ikiye bölmek çarpýmý deðiþtirmez. Bu yolla yuvarlak bir eþlenik bul.',
+    category: 'carpma',
+  },
+  {
+    id: 'eleven-two-digit',
+    title: '11 ile 2 basamaklý çarpma',
+    example: '11 × 45 â†’ 4 _ 5, ortaya 4+5=9 â†’ 495',
+    explanation:
+      'Ýki basamaklý bir sayýyý 11 ile çarpmak için basamaklarý ayýr, aralarýna toplamý yaz. Elde varsa sola aktar.',
+    category: 'carpma',
+  },
+  {
+    id: 'square-ends-in-five',
+    title: '5 ile biten sayýnýn karesi',
+    example: '35² â†’ 3×4=12, sonra 25 â†’ 1225',
+    explanation:
+      '5 ile biten iki basamaklý sayýnýn karesini al: onluk basamaðýný bir fazlasýyla çarp, sonuna 25 ekle.',
+    category: 'carpma',
+  },
+  {
+    id: 'division-as-reverse',
+    title: 'Bölmeyi çarpmaya çevir',
+    example: '72 ÷ 8 â†’ "8 kaç ile çarpýlýrsa 72?" â†’ 9',
+    explanation:
+      'Bölme sorusunu "çarpým tablosunda hangi deðer?" olarak sor. Cevap daha çabuk gelir.',
+    category: 'bolme',
+  },
+  {
+    id: 'divisibility-check',
+    title: 'Bölünebilirlik ipuçlarý',
+    example: '2: son rakam çift · 3: rakamlar toplamý 3 ile bölünür · 5: son 0 veya 5',
+    explanation:
+      'Bölme sorusunda cevabýn tam çýkýp çýkmayacaðýný hýzlýca kontrol etmek hata payýný azaltýr.',
+    category: 'bolme',
+  },
+  {
+    id: 'estimate-first',
+    title: 'Önce tahmin et, sonra çöz',
+    example: '487 + 319 â‰ˆ 500 + 320 = 820 (gerçek: 806)',
+    explanation:
+      'Önce zihnen yaklaþýk cevabý kestir. Gerçek sonuç bu tahminden çok farklýysa tekrar kontrol et.',
+    category: 'genel',
+  },
+  {
+    id: 'check-by-reversing',
+    title: 'Ters iþlemle doðrula',
+    example: '144 ÷ 12 = 12, kontrol: 12 × 12 = 144 âœ“',
+    explanation:
+      'Cevabý teslim etmeden önce ters iþlemi zihninde yap. Bir saniye kaybedersin ama yanlýþý yakalarsýn.',
+    category: 'genel',
+  },
+]
+
+export function getDailyTip(): SpeedMathTip {
+  const index = Math.floor(Math.random() * speedMathTips.length)
+  return speedMathTips[index]
+}

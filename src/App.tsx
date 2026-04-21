@@ -14,6 +14,7 @@ import {
   gradeAnswer,
   missions,
   profiles,
+  speedMathTips,
 } from './game/engine'
 import type { MissionId, ProfileId } from './game/types'
 
@@ -446,6 +447,24 @@ function HomeScreen({
               </article>
             )
           })}
+        </div>
+      </section>
+
+      <section className="badge-showcase">
+        <div className="panel-heading">
+          <h2>Hızlı matematik okulu</h2>
+          <p>Her turdan önce bir hızlı zihin yöntemi öğren, bir süre uygula, alışkanlığa dönüştür.</p>
+        </div>
+
+        <div className="badge-wall">
+          {speedMathTips.map((tip) => (
+            <article className="badge-plaque unlocked badge-cyan" key={tip.id}>
+              <div className="badge-mark">{tip.category}</div>
+              <h3>{tip.title}</h3>
+              <p><strong>{tip.example}</strong></p>
+              <p>{tip.explanation}</p>
+            </article>
+          ))}
         </div>
       </section>
     </>

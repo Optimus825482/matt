@@ -9,7 +9,9 @@
       "Read(//tmp/**)",
       "mcp__jcodemunch__get_file_outline",
       "mcp__jcodemunch__get_symbol_source",
-      "Bash(python patch_app.py)"
+      "Bash(python patch_app.py)",
+      "Bash(python patch_tips.py)",
+      "Bash(rm patch_tips.py)"
     ]
   }
 }

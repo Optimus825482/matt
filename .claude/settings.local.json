@@ -11,7 +11,11 @@
       "mcp__jcodemunch__get_symbol_source",
       "Bash(python patch_app.py)",
       "Bash(python patch_tips.py)",
-      "Bash(rm patch_tips.py)"
+      "Bash(rm patch_tips.py)",
+      "Bash(xxd)",
+      "Bash(python check.py)",
+      "Bash(python fix_tips.py)",
+      "Bash(rm fix_tips.py)"
     ]
   }
 }

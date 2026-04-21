@@ -21,10 +21,15 @@ type Screen = 'home' | 'missions' | 'play'
 type BadgeId =
   | 'first-session'
   | 'streak-five'
+  | 'streak-ten'
   | 'accuracy-90'
   | 'tables-master'
   | 'division-master'
   | 'hundred-club'
+  | 'lightning-reflex'
+  | 'marathon-runner'
+  | 'perfect-round'
+  | 'big-numbers-hero'
 
 type CareerStats = {
   playerName: string
@@ -79,6 +84,36 @@ const badgeCatalog: BadgeDefinition[] = [
     title: 'Yuz Soru Kulubu',
     caption: 'Toplam cozulen soru sayisi 100 oldu.',
     palette: 'sky',
+  },
+  {
+    id: 'streak-ten',
+    title: 'Zincir Ustasi',
+    caption: 'Bir turda 10 dogru arka arkaya yakalandi.',
+    palette: 'amber',
+  },
+  {
+    id: 'lightning-reflex',
+    title: 'Simsek Refleks',
+    caption: 'Ortalama tepki suresi 3 saniyenin altinda.',
+    palette: 'cyan',
+  },
+  {
+    id: 'marathon-runner',
+    title: 'Maraton Kosucusu',
+    caption: 'Bir turda 20 veya daha fazla soru cozuldu.',
+    palette: 'violet',
+  },
+  {
+    id: 'perfect-round',
+    title: 'Kusursuz Tur',
+    caption: 'Bir tur hatasiz tamamlandi.',
+    palette: 'emerald',
+  },
+  {
+    id: 'big-numbers-hero',
+    title: 'Buyuk Sayi Kahramani',
+    caption: 'Buyuk Sayilar gorevinde yuksek dogruluk yakalandi.',
+    palette: 'rose',
   },
 ]
 
@@ -216,6 +251,21 @@ function App() {
       if (nextTotalSolved >= 100) {
         nextBadges.add('hundred-club')
       }
+      if (session.bestStreak >= 10) {
+        nextBadges.add('streak-ten')
+      }
+      if (session.history.length >= 20) {
+        nextBadges.add('marathon-runner')
+      }
+      if (session.history.length >= 6 && session.history.every((item) => item.isCorrect)) {
+        nextBadges.add('perfect-round')
+      }
+      if (averageReaction > 0 && averageReaction < 3) {
+        nextBadges.add('lightning-reflex')
+      }
+      if (session.missionId === 'big-numbers' && accuracy >= 75) {
+        nextBadges.add('big-numbers-hero')
+      }
 
       return {
         ...current,
@@ -227,7 +277,7 @@ function App() {
         recentMissionTitle: mission.title,
       }
     })
-  }, [accuracy, mission.title, screen, session])
+  }, [accuracy, averageReaction, mission.title, screen, session])
 
   const startMission = () => {
     hasRecordedResult.current = false

@@ -1,7 +1,15 @@
 export type Operation = 'addition' | 'subtraction' | 'multiplication' | 'division'
 
-export type MissionId = 'mixed' | 'tables' | 'division' | 'warmup'
-export type ProfileId = 'steady' | 'focus' | 'boost'
+export type MissionId =
+  | 'mixed'
+  | 'tables'
+  | 'division'
+  | 'warmup'
+  | 'big-numbers'
+  | 'speed-tables'
+  | 'marathon'
+  | 'precision'
+export type ProfileId = 'zen' | 'steady' | 'focus' | 'boost' | 'elite'
 
 export type Question = {
   id: string

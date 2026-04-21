@@ -14,6 +14,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV PORT=3015
+# Coolify veya docker-compose ile override edilebilir
 
 COPY --from=build /app/package*.json ./
 COPY --from=build /app/node_modules ./node_modules

@@ -4,21 +4,21 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      PORT: 3001
+      PORT: 3015
       APP_SESSION_SECRET: ${APP_SESSION_SECRET:?APP_SESSION_SECRET gerekli}
       SUPERADMIN_USERNAME: ${SUPERADMIN_USERNAME:-superadmin}
       SUPERADMIN_PASSWORD: ${SUPERADMIN_PASSWORD:?SUPERADMIN_PASSWORD gerekli}
     volumes:
       - app_data:/app/data
     ports:
-      - "3001:3001"
+      - "3015:3015"
     healthcheck:
       test:
         [
           "CMD",
           "node",
           "-e",
-          "fetch('http://127.0.0.1:3001/api/health').then((r)=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+          "fetch('http://127.0.0.1:3015/api/health').then((r)=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
         ]
       interval: 30s
       timeout: 5s
